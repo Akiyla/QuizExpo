@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -7,16 +7,16 @@ const Stack = createStackNavigator();
 
 // Definindo as perguntas do quiz
 const questions = [
-  { question: 'Personas são a representação da personalidade do usuário, comummente tomando forma de criaturas mitologicas.', answer: true },
-  { question: 'Um usuário comum de personas pode ter várias formas de sua persona.', answer: true },
-  { question: 'Sombras são personas, mas em um estado alterado.', answer: false },
-  { question: 'Uma "Wildcard" ou coringa, é um usuário capaz de sumonar diversas personas em combate.', answer: true },
-  { question: 'Yukari Takeba, é um exemplo de Wildcard em Persona 3.', answer: false },
-  { question: 'A Sala de veludo é um lugar abstrato, mudando conforme a jornada de quem a visita.', answer: true },
-  { question: 'Makoto Yuki é o unico Wildcard capaz de usar a persona Thantanos.', answer: false },
-  { question: 'Personas podem ser sumonadas de diversas formas. Estas sendo: Enfrentando a morte, Arrancando sua máscara, e usando seu celular.', answer: false },
+  { question: 'Personas são a representação da personalidade do usuário, comummente tomando forma de criaturas mitologicas.', answer: true, image: 'https://i1.sndcdn.com/artworks-000672672571-nbinu8-t500x500.jpg' },
+  { question: 'Um usuário comum de personas pode ter várias formas de sua persona.', answer: true , image: 'https://preview.redd.it/i-want-to-see-your-fan-made-personas-v0-6iz271rc6vvc1.jpeg?width=640&crop=smart&auto=webp&s=448a454c19353ede26cbee9f0dfcc4b1d451f35b' },
+  { question: 'Sombras são personas, mas em um estado alterado.', answer: false, image: 'https://preview.redd.it/why-are-there-only-twelve-shadows-v0-d7hzahpigfid1.jpg?width=480&format=pjpg&auto=webp&s=5f35675d1951c82ef98b55013b141d337b1ecd1c'},
+  { question: 'Uma "Wildcard" ou coringa, é um usuário capaz de sumonar diversas personas em combate.', answer: true , image: 'https://cdn.discordapp.com/attachments/1290655713382764558/1364008971236540517/image.png?ex=68081bd8&is=6806ca58&hm=6788d490c8290a704fa60f7012ba3042ddc2ceaa0a5bc9459c25e383444eb184&' },
+  { question: 'Yukari Takeba, é um exemplo de Wildcard em Persona 3.', answer: false , image: 'https://media1.tenor.com/m/lRlTffJwLSYAAAAd/persona-3-persona-3-reload.gif' },
+  { question: 'A Sala de veludo é um lugar abstrato, mudando conforme a jornada de quem a visita.', answer: true , image: 'https://media1.tenor.com/m/bgiPmC3SJpQAAAAC/dan%C3%A7ando-bboying-nicholas-andteam.gif' },
+  { question: 'Makoto Yuki é o unico Wildcard capaz de usar a persona Thantanos.', answer: false , image: 'https://media1.tenor.com/m/p9jlZCw57IYAAAAC/persona-3-thanatos-thanatos-makoto.gif' },
+  { question: 'Personas podem ser sumonadas de diversas formas. Estas sendo: Enfrentando a morte, Arrancando sua máscara, e usando seu celular.', answer: false , image: 'https://media1.tenor.com/m/YTWHmcGTfu8AAAAC/persona-persona3.gif' },
   { question: 'Personas são um tipo de demonio.', answer: false },
-  { question: 'As "Arcanas, baseadas no Tarô, fortalescem as personas de um Wildcard por meio de Laços sociais que representam as arcanas.', answer: true },
+  { question: 'As "Arcanas, baseadas no Tarô, fortalecem as personas de um Wildcard por meio de Laços sociais que representam as arcanas.', answer: true, image: 'https://cdn.discordapp.com/attachments/1290655713382764558/1364006609562632303/image.png?ex=680819a5&is=6806c825&hm=c35b32632207689a584a4e6539ed994d0b93ff6d0d880e37a0f71c91bc416607&' },
 ];
 
 const HomeScreen = ({ navigation }) => {
@@ -63,6 +63,10 @@ const QuizScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.question}>{questions[currentQuestion].question}</Text>
+      <Image
+        source={{ uri: questions[currentQuestion].image }}
+        style={styles.image}
+      />
       <View style={styles.buttonsContainer}>
         <Button
           title="Verdadeiro"
@@ -130,6 +134,12 @@ const styles = StyleSheet.create({
   },
   question: {
     fontSize: 18,
+    marginBottom: 20,
+  },
+  image: {
+    width: 500,
+    height: 300,
+    resizeMode: 'contain',
     marginBottom: 20,
   },
   score: {
